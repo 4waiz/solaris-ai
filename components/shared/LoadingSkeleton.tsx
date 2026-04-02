@@ -2,6 +2,8 @@
 
 import { cn } from "@/lib/utils";
 
+const BAR_HEIGHTS = [45, 72, 33, 88, 55, 41, 76, 62, 29, 84, 50, 67, 38, 91, 44, 73, 56, 35, 80, 48, 69, 37, 82, 58];
+
 export function CardSkeleton({ className }: { className?: string }) {
   return (
     <div
@@ -33,7 +35,7 @@ export function ChartSkeleton({ className }: { className?: string }) {
             key={i}
             className="flex-1 rounded-t-sm bg-muted animate-pulse"
             style={{
-              height: `${20 + Math.random() * 80}%`,
+              height: `${BAR_HEIGHTS[i]}%`,
               animationDelay: `${i * 50}ms`,
             }}
           />

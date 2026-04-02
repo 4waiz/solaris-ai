@@ -388,7 +388,7 @@ export default function InsightsPage() {
                 title: "CO₂ Avoided",
                 desc: "Estimated emissions reduction using UAE grid average of 0.42 kg CO₂/kWh applied to total energy shifted.",
               },
-            ].map((metric, i) => (
+            ].map((metric) => (
               <div
                 key={metric.title}
                 className="rounded-xl border border-border/60 bg-card p-4 shadow-premium"
