@@ -17,6 +17,10 @@ import {
   MapPin,
   Zap,
   X,
+  BarChart3,
+  Award,
+  FileDown,
+  Battery,
 } from "lucide-react";
 import Link from "next/link";
 import { useStore } from "@/hooks/useStore";
@@ -61,6 +65,15 @@ const SEARCH_ITEMS = [
 const ICON_MAP: Record<string, typeof Factory> = {
   plant: Factory,
   storage: Zap,
+  office: Building2,
+  hotel: Hotel,
+  mall: Store,
+  campus: GraduationCap,
+};
+
+const ASSET_ICON_MAP: Record<string, typeof Factory> = {
+  plant: Factory,
+  storage: Battery,
   office: Building2,
   hotel: Hotel,
   mall: Store,
@@ -570,6 +583,152 @@ export default function CommandCenter() {
                 </div>
               </motion.div>
             )}
+
+            {/* Asset overview */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.55 }}
+              className="rounded-2xl border border-border/60 bg-card p-5 shadow-premium"
+            >
+              <div className="flex items-center justify-between mb-3">
+                <h3 className="text-sm font-semibold text-foreground">
+                  Asset Overview
+                </h3>
+                <Link
+                  href="/digital-twin"
+                  className="text-xs text-teal-600 dark:text-teal-400 hover:underline"
+                >
+                  View all
+                </Link>
+              </div>
+              <div className="space-y-2.5">
+                {DEMO_ASSETS.map((asset) => {
+                  const Icon = ASSET_ICON_MAP[asset.type] || Building2;
+                  const pct = Math.round((asset.currentLoad / asset.maxCapacity) * 100);
+                  return (
+                    <div key={asset.id} className="flex items-center gap-3">
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-muted/60">
+                        <Icon className="h-4 w-4 text-muted-foreground" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs font-medium text-foreground truncate">
+                          {asset.name.split(" ").slice(0, 3).join(" ")}
+                        </p>
+                        <div className="mt-1 h-1.5 w-full rounded-full bg-muted/60 overflow-hidden">
+                          <div
+                            className={cn(
+                              "h-full rounded-full transition-all",
+                              pct > 80
+                                ? "bg-rose-500"
+                                : pct > 60
+                                  ? "bg-amber-500"
+                                  : "bg-teal-500"
+                            )}
+                            style={{ width: `${pct}%` }}
+                          />
+                        </div>
+                      </div>
+                      <span className="text-xs font-medium text-muted-foreground shrink-0 tabular-nums">
+                        {pct}%
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            </motion.div>
+
+            {/* Live weather snapshot */}
+            {displayData.length > 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+                className="rounded-2xl border border-border/60 bg-gradient-to-br from-rose-50/40 to-orange-50/40 dark:from-rose-900/10 dark:to-orange-900/10 p-5 shadow-premium"
+              >
+                <h3 className="text-sm font-semibold text-foreground">
+                  Current Conditions
+                </h3>
+                <div className="mt-3 grid grid-cols-2 gap-3">
+                  <div>
+                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground">Temperature</p>
+                    <p className="text-lg font-bold text-foreground mt-0.5">
+                      {displayData[0]?.temperature ?? "--"}°C
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground">Feels Like</p>
+                    <p className="text-lg font-bold text-foreground mt-0.5">
+                      {displayData[0]?.apparentTemp ?? "--"}°C
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground">Humidity</p>
+                    <p className="text-lg font-bold text-foreground mt-0.5">
+                      {displayData[0]?.humidity ?? "--"}%
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground">Solar Rad.</p>
+                    <p className="text-lg font-bold text-foreground mt-0.5">
+                      {displayData[0]?.solarRadiation ?? "--"}
+                      <span className="text-xs font-normal text-muted-foreground ml-0.5">W/m²</span>
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground">Wind</p>
+                    <p className="text-lg font-bold text-foreground mt-0.5">
+                      {displayData[0]?.windSpeed ?? "--"}
+                      <span className="text-xs font-normal text-muted-foreground ml-0.5">km/h</span>
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] uppercase tracking-wider text-muted-foreground">Cloud Cover</p>
+                    <p className="text-lg font-bold text-foreground mt-0.5">
+                      {displayData[0]?.cloudCover ?? "--"}%
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+
+            {/* Quick links */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.65 }}
+              className="rounded-2xl border border-border/60 bg-card p-5 shadow-premium"
+            >
+              <h3 className="text-sm font-semibold text-foreground mb-3">
+                Quick Actions
+              </h3>
+              <div className="space-y-2">
+                <Link
+                  href="/optimization"
+                  className="flex items-center gap-3 rounded-xl bg-muted/40 px-3 py-2.5 text-xs font-medium text-foreground hover:bg-muted/60 transition-colors"
+                >
+                  <BarChart3 className="h-4 w-4 text-teal-600 dark:text-teal-400" />
+                  <span className="flex-1">Run Optimization</span>
+                  <ArrowRight className="h-3 w-3 text-muted-foreground" />
+                </Link>
+                <Link
+                  href="/flex-credits"
+                  className="flex items-center gap-3 rounded-xl bg-muted/40 px-3 py-2.5 text-xs font-medium text-foreground hover:bg-muted/60 transition-colors"
+                >
+                  <Award className="h-4 w-4 text-amber-500" />
+                  <span className="flex-1">View Flex Credits</span>
+                  <ArrowRight className="h-3 w-3 text-muted-foreground" />
+                </Link>
+                <Link
+                  href="/insights"
+                  className="flex items-center gap-3 rounded-xl bg-muted/40 px-3 py-2.5 text-xs font-medium text-foreground hover:bg-muted/60 transition-colors"
+                >
+                  <FileDown className="h-4 w-4 text-violet-500" />
+                  <span className="flex-1">Export MRV Report</span>
+                  <ArrowRight className="h-3 w-3 text-muted-foreground" />
+                </Link>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>

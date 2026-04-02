@@ -35,10 +35,16 @@ interface AppState {
 
   theme: "light" | "dark";
   toggleTheme: () => void;
+
+  // Auth
+  isLoggedIn: boolean;
+  userName: string | null;
+  login: (name: string) => void;
+  logout: () => void;
 }
 
 export const useStore = create<AppState>((set) => ({
-  location: PRESET_LOCATIONS[0], // Dubai default
+  location: PRESET_LOCATIONS[0],
   setLocation: (location) => set({ location }),
 
   isLoading: false,
@@ -68,4 +74,9 @@ export const useStore = create<AppState>((set) => ({
     set((state) => ({
       theme: state.theme === "light" ? "dark" : "light",
     })),
+
+  isLoggedIn: false,
+  userName: null,
+  login: (name) => set({ isLoggedIn: true, userName: name }),
+  logout: () => set({ isLoggedIn: false, userName: null }),
 }));
