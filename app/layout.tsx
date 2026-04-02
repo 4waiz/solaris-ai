@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans, Inter } from "next/font/google";
 import { Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/shared/Navbar";
+import { Footer } from "@/components/shared/Footer";
 import { ThemeProvider } from "@/components/shared/ThemeProvider";
 
 const heading = Plus_Jakarta_Sans({
@@ -44,6 +45,7 @@ export default function RootLayout({
         <ThemeProvider>
           <Navbar />
           <main className="flex-1">{children}</main>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

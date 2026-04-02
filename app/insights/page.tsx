@@ -75,7 +75,7 @@ export default function InsightsPage() {
     <div className="min-h-screen">
       <div className="border-b border-border/60 bg-card">
         <div className="mx-auto max-w-[1400px] px-4 lg:px-8 py-6">
-          <div className="flex items-start justify-between">
+          <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
             <div>
               <h1 className="text-2xl font-bold tracking-tight text-foreground">
                 Insights & MRV
@@ -85,7 +85,7 @@ export default function InsightsPage() {
                 flexibility performance
               </p>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 shrink-0">
               <button
                 onClick={handleCSV}
                 disabled={records.length === 0}
