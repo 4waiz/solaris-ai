@@ -9,7 +9,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-sans);
+  --font-heading: var(--font-heading);
 
   /* Solaris custom colors */
   --color-teal-50: #ECFDF5;
@@ -144,6 +144,16 @@
   }
   html {
     @apply font-sans scroll-smooth;
+  }
+  h1, h2, h3 {
+    font-family: var(--font-heading), ui-sans-serif, system-ui, sans-serif;
+    letter-spacing: -0.025em;
+  }
+  h1 {
+    font-weight: 800;
+  }
+  h2 {
+    font-weight: 700;
   }
 }
 

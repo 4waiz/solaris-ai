@@ -67,7 +67,7 @@ export default function CommandCenter() {
             transition={{ duration: 0.7, ease: "easeOut" }}
             className="text-center"
           >
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.1]">
               Turn cooling demand into a
               <br />
               <span className="text-teal-300">
