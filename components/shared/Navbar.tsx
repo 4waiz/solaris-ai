@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useState, useMemo, useEffect, useRef } from "react";
 import {
@@ -112,9 +113,7 @@ export function Navbar() {
         <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-4 lg:px-8">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2.5 shrink-0">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-teal-600 to-teal-500">
-              <Sun className="h-4.5 w-4.5 text-white" />
-            </div>
+            <Image src="/icon.png" alt="Solaris AI" width={32} height={32} className="h-8 w-8 rounded-lg object-contain" />
             <span className="text-lg font-semibold tracking-tight text-foreground">
               Solaris <span className="font-light text-muted-foreground">AI</span>
             </span>
@@ -332,9 +331,7 @@ export function Navbar() {
           <div className="relative w-full max-w-sm mx-4 rounded-2xl border border-border/60 bg-card shadow-premium-lg overflow-hidden">
             {/* Modal header */}
             <div className="relative bg-gradient-to-br from-teal-600 to-teal-700 px-6 pt-8 pb-6 text-center">
-              <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-white/15 backdrop-blur-sm border border-white/20">
-                <Sun className="h-7 w-7 text-white" />
-              </div>
+              <Image src="/icon.png" alt="Solaris AI" width={56} height={56} className="mx-auto h-14 w-14 rounded-2xl object-contain" />
               <h2 className="mt-4 text-xl font-bold text-white">Welcome back</h2>
               <p className="mt-1 text-sm text-teal-100/70">Sign in to Solaris AI operator portal</p>
               <button
